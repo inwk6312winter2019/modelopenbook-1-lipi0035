@@ -21,17 +21,20 @@
 
 fin = open("running-config.cfg")
 dic = list_ifname_ip(fin)
-print(dic)'''
+print(dic)
 
 #Task 2
+
 import re
 fin1 = open("running-config.cfg")
 fout1 = open("running-config-copy.cfg","w")
 ip_pattern = re.compile("^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$")
 
 for line in fin1:
-  #line = line.strip()
-  '''words = line.split()
+  #line = line.strip()'''
+ 
+'''
+  words = line.split()
   for word in words:
     if(ip_pattern.match(word)):
       if(('192' in word) or ('172' in word)):
@@ -43,11 +46,33 @@ for line in fin1:
       elif('255' in word):
         word = '255.0.0.0'
         line.replace("255*",word)'''
+
+'''
   line = line.replace('192','10')
   line = line.replace('172','10')
   line = line.replace('255.255.0.0','255.0.0.0')
   line = line.replace('255.255.255.0','255.0.0.0')
-  fout1.write(line)
+  fout1.write(line)'''
 
-'''for line in fout1:
-  print(line) '''
+#Task 3
+fin3 = open("running-config.cfg")
+
+transit_access_in = []
+fw_management_access_in = []
+global_access = []
+
+for line in fin3:
+  line = line.strip()
+  if("transit_access_in" in line):
+    transit_access_in.append(line)
+  elif("fw-management_access_in" in line):
+    fw_management_access_in.append(line)
+  elif("global_access" in line):
+    global_access.append(line)
+
+
+print(transit_access_in)
+print()
+print(fw_management_access_in)
+print()
+print(global_access)
