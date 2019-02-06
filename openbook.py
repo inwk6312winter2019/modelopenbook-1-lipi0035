@@ -1,6 +1,6 @@
 #Task 1
 
-'''def list_ifname_ip(fin):
+def list_ifname_ip(fin):
   d = {}
   keys = []
   val = []
@@ -30,9 +30,12 @@ fin1 = open("running-config.cfg")
 fout1 = open("running-config-copy.cfg","w")
 ip_pattern = re.compile("^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$")
 
-for line in fin1:
-  #line = line.strip()'''
- 
+for line in fin1: 
+  line = line.replace('192','10')
+  line = line.replace('172','10')
+  line = line.replace('255.255.0.0','255.0.0.0')
+  line = line.replace('255.255.255.0','255.0.0.0')
+  fout1.write(line)
 '''
   words = line.split()
   for word in words:
@@ -45,14 +48,9 @@ for line in fin1:
         line.replace("172*",word)
       elif('255' in word):
         word = '255.0.0.0'
-        line.replace("255*",word)'''
-
+        line.replace("255*",word)
 '''
-  line = line.replace('192','10')
-  line = line.replace('172','10')
-  line = line.replace('255.255.0.0','255.0.0.0')
-  line = line.replace('255.255.255.0','255.0.0.0')
-  fout1.write(line)'''
+
 
 #Task 3
 fin3 = open("running-config.cfg")
